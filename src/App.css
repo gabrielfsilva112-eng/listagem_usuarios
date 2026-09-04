@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --paper: #FBF8F3;
+    --ink: #24292B;
+    --teal: #2F6F6E;
+    --teal-soft: #E4F0EF;
+    --amber: #E2A63B;
+    --line: #DDD3C2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--paper);
+    margin: 0;
+}
+
+.app {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+}
+
+.header {
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--teal);
+    padding-bottom: 0.75rem;
+}
+
+.header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 2.1rem;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.search-input:focus {
+    border-color: var(--teal);
+}
+
+.results-count {
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+}
+
+.results-count strong {
+    color: var(--amber);
+    font-weight: 600;
+}
+
+.loading {
+    color: var(--teal);
+    font-style: italic;
+}
+
+.error-message {
+    color: #B3411F;
+    background: #FBE9E4;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+.empty-message {
+    color: #7A7268;
+    font-style: italic;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--teal);
+    border-radius: 4px;
+}
+
+.user-card__avatar {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--teal-soft);
+    color: var(--teal);
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-card--accent-1 .user-card__avatar { background: #FCEFD8; color: var(--amber); }
+.user-card--accent-2 .user-card__avatar { background: #E4F0EF; color: var(--teal); }
+.user-card--accent-3 .user-card__avatar { background: #F1E7F5; color: #7A5C93; }
+
+.user-card__name {
+    font-size: 1.02rem;
+    font-weight: 500;
+}

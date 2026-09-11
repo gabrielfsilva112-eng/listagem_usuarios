@@ -1,6 +1,6 @@
-import UserCard from "./UserCard";
+import UserCard from "./UserCardComponent";
 
-function UserListComponent({ usuarios }) {
+function UserListComponent({ usuarios, onSelecionarUsuario }) {
     if (usuarios.length === 0) {
         return <p className="empty-message">Nenhum usuário encontrado.</p>;
     }
@@ -8,7 +8,7 @@ function UserListComponent({ usuarios }) {
     return (
         <ul className="user-list">
             {usuarios.map((usuario) => (
-                <UserCard key={usuario.id} usuario={usuario} />
+                <UserCard key={usuario.id} usuario={usuario} onSelecionarUsuario={onSelecionarUsuario} />
             ))}
         </ul>
     );

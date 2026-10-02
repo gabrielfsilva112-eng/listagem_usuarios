@@ -280,3 +280,42 @@ body {
     font-size: 1.15rem;
     margin-top: 0;
 }
+
+.user-card__actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.user-card .btn-delete {
+    margin-top: 0;
+    background: #B3411F;
+}
+
+.user-card .btn-delete:hover {
+    background: #8f3318;
+}
+
+.btn-criar-usuario {
+    margin: 0.5rem 0 1.5rem;
+    padding: 0.65rem 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--amber);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-criar-usuario:hover {
+    background: #c78f2c;
+}
+
+.modal-content .user-form {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 1rem;
+}

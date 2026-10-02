@@ -30,6 +30,7 @@ export default function App() {
     const [usuarioSelecionado, setUsuarioSelecionado] = useState(null);
     const [novoUsuario, setNovoUsuario] = useState(null);
     const [erroCadastro, setErroCadastro] = useState(null);
+    const [formularioAberto, setFormularioAberto] = useState(false);
 
     const usuariosFiltrados = usuarios.filter(filtrarUsuarioPorTermo(busca));
 
@@ -64,6 +65,16 @@ export default function App() {
         setUsuarioSelecionado(null);
     }
 
+    function abrirFormulario() {
+        setFormularioAberto(true);
+    }
+
+    function fecharFormulario() {
+        setFormularioAberto(false);
+        setErroCadastro(null);
+        setNovoUsuario(null);
+    }
+
     async function cadastrarUsuario(usuario) {
         try {
             const response = await axios.post(`${url}/users`, usuario);
@@ -74,6 +85,18 @@ export default function App() {
             console.log("Erro ao cadastrar usuário: ", error);
             setErroCadastro(`Não foi possível cadastrar o usuário - ${error.message}`);
             setNovoUsuario(null);
+        }
+    }
+
+    async function deletarUsuario(id) {
+        try {
+            await axios.delete(`${url}/users/${id}`);
+            setUsuarios((usuariosAtuais) =>
+                usuariosAtuais.filter((usuario) => usuario.id !== id)
+            );
+        } catch (error) {
+            console.log("Erro ao deletar usuário: ", error);
+            setError(`Não foi possível deletar o usuário - ${error.message}`);
         }
     }
 
@@ -106,6 +129,7 @@ export default function App() {
                         <UserListComponent
                             usuarios={usuariosFiltrados}
                             onSelecionarUsuario={buscarUsuario}
+                            onDeletarUsuario={deletarUsuario}
                         />
                     ) : (
                         <p className="empty-message">
@@ -122,16 +146,23 @@ export default function App() {
                         )}
                     </Modal>
 
-                    <UserForm onCadastrar={cadastrarUsuario} />
+                    <button className="btn-criar-usuario" onClick={abrirFormulario}>
+                        + Criar usuário
+                    </button>
 
-                    {erroCadastro && <ErrorMessage mensagem={erroCadastro} />}
+                    <Modal isOpen={formularioAberto} onClose={fecharFormulario}>
+                        <h2>Novo usuário</h2>
+                        <UserForm onCadastrar={cadastrarUsuario} />
 
-                    {novoUsuario && (
-                        <>
-                            <SuccessMessage mensagem="Usuário cadastrado com sucesso!" />
-                            <NovoUsuarioComponent novoUsuario={novoUsuario} />
-                        </>
-                    )}
+                        {erroCadastro && <ErrorMessage mensagem={erroCadastro} />}
+
+                        {novoUsuario && (
+                            <>
+                                <SuccessMessage mensagem="Usuário cadastrado com sucesso!" />
+                                <NovoUsuarioComponent novoUsuario={novoUsuario} />
+                            </>
+                        )}
+                    </Modal>
                 </>
             )}
         </div>
